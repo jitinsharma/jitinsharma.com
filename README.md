@@ -1,2 +1,0 @@
-# jitinsharma.in
-Personal Website
