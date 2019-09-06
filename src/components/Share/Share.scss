@@ -1,0 +1,40 @@
+$brand-colors: (
+	facebook: #3b5998,
+	twitter: #1da1f2,
+	googleplus: #dd4b39,
+	linkedin: #0077b5,
+	reddit: #ff4500,
+	whatsapp: #128c7e,
+);
+
+.post-social {
+    max-width: 995px;
+    margin: 0 auto;
+	.button {
+		margin: 0.5rem 0.25rem;
+		// transition: all 300ms ease-out;
+		@each $class, $color in $brand-colors {
+			&.#{$class} {
+				color: $color;
+                border-color: $color;
+                border-radius: 25px;
+                border: 2px solid $color;
+                padding-left: 0.8rem; 
+                padding-right: 0.8rem; 
+                padding-top: 0.3rem; 
+                padding-bottom: 0.3rem; 
+                display: inline-block;
+				&:hover {
+					background-color: $color;
+					border-color: $color;
+                    color: #fff;
+                    cursor: pointer;
+				}
+			}
+		}
+    }
+    
+    .text {
+        padding-left: 0.5rem;
+    }
+}
