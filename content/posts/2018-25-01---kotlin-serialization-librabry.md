@@ -10,6 +10,8 @@ tags:
 description: "Kotlin has recently released a library for serialization. To put things in perspective, before this there was no serialization lib provided by kotlin but you could use any platform supported serialization libraries with Kotlin classes(eg. Gson for JVM/Android)."
 ---
 
+>Ported from **Medium**, original source [here](https://android.jlelse.eu/kotlin-serialization-library-38bf85d8768b)
+
 Kotlin has recently released a library for serialization. To put things in perspective, before this there was no serialization lib provided by kotlin but you could use any platform supported serialization libraries with Kotlin classes(eg. Gson for JVM/Android)
 
 But that’s where Kotlin’s serialization library is different, it’s cross platform and supports multiple formats. The whole lib is built on top of Kotlin’s multiplatform concept.

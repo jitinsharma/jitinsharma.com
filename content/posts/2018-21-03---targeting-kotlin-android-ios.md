@@ -12,6 +12,8 @@ tags:
 description: "Kotlin has been traditionally used as a language for JVM based platforms and has become highly popular in Android ecosystem. As the language matures, it is knocking on new frontiers — platforms other than JVM, one of them being iOS."
 ---
 
+>Ported from **Medium**, original source [here](https://proandroiddev.com/targeting-kotlin-for-both-android-and-ios-dec5b967006a)
+
 Kotlin has been traditionally used as a language for JVM based platforms and has become highly popular in Android ecosystem. As the language matures, it is knocking on new frontiers — platforms other than JVM, one of them being iOS.
 
 Kotlin started out with compilation to .class files which allowed interoperability with Java and conversion to .dex for Android. But now with [Kotlin Native](https://github.com/JetBrains/kotlin-native), kotlin can target platforms which directly execute bytecode without a VM — emebedded systems, macOS and **iOS.**

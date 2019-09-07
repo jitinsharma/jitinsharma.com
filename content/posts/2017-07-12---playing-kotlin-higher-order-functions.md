@@ -10,6 +10,8 @@ tags:
 description: "One of the cool things in Kotlin is having ability to pass around functions as objects. That’s where higher order functions come and allow us to write code more declaratively."
 ---
 
+>Ported from **Medium**, original source [here](https://android.jlelse.eu/playing-with-kotlin-higher-order-functions-aecce3d72a12)
+
 One of the cool things in Kotlin is having ability to pass around functions as objects. That’s where higher order functions come and allow us to write code more declaratively.
 
 I’m gonna list down some function blocks
@@ -80,7 +82,7 @@ withNetwork {
 Again, this makes code more readable and looks nice :)
 
 
->  But one should consider the logic which should be transformed into function block. The above code block only has if condition which works fine but if there needs to be an else section, we may wanna avoid function blocks. This is valid for withConnection {} where an else case may be required to show some message for network connectivity.
+>  But one should consider the logic which should be transformed into function block. The above code block only has if condition which works fine but if there needs to be an else section, we may wanna avoid function blocks. This is valid for `withConnection {}` where an else case may be required to show some message for network connectivity.
 
 Moving on to more cool stuff
 

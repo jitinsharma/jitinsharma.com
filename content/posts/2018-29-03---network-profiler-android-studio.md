@@ -11,6 +11,8 @@ tags:
 description: "Android Studio 3.1 recently came out of beta. It has a lot of features such as kotlin lint checks, D8 compiler and also a revamped Network Profiler."
 ---
 
+>Ported from **Medium**, original source [here](https://android.jlelse.eu/quick-tip-network-profiler-in-android-studio-3-1-491e530ac8f2)
+
 Android Studio 3.1 recently came out of beta. It has a lot of features such as kotlin lint checks, D8 compiler and also a revamped **Network Profiler**.
 
 From early days of DDMS, we could always check how network data was being consumed but the current iteration of profiler has added a whole new set of features. Let’s check them out
