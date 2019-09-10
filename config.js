@@ -27,7 +27,7 @@ module.exports = {
   author: {
     name: 'Jitin Sharma',
     photo: '/photo.jpg',
-    bio: 'Android, Kotlin and other stuff',
+    bio: "💻Android  👀UX  ⌨️Kotlin",
     contacts: {
       twitter: '_jitinsharma',
       github: 'jitinsharma',

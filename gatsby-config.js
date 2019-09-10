@@ -13,7 +13,7 @@ module.exports = {
     disqusShortname: siteConfig.disqusShortname,
     menu: siteConfig.menu,
     author: siteConfig.author,
-    twitterHandle: '@jitinsharma'
+    twitterHandle: '@_jitinsharma'
   },
   plugins: [
     {
