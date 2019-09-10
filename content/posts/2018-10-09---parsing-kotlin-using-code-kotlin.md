@@ -3,7 +3,7 @@ title: Parsing Kotlin code using Kotlin
 date: "2019-09-10"
 template: "post"
 draft: false
-slug: "/posts/parsing-kotlin-code-kotlin/"
+slug: "/posts/parsing-kotlin-using-code-kotlin/"
 category: "Kotlin"
 tags:
   - "Kotlin"
@@ -12,7 +12,7 @@ description: "
 As Android codebases have moved largely to kotlin, code analysis for kotlin code presents itself as a unique problem with a utterly simple solution."
 ---
 
-<img src="/media/parsing-kotlin-code-kotlin/logo.svg" width="75" height="75"/>
+<img src="/media/parsing-kotlin-using-code-kotlin/logo.svg" width="75" height="75"/>
 
 So you are already writing code in Kotlin and it feels great. The feeling is mutual, Kotlin is a great language and everyone loves lambdas.
 

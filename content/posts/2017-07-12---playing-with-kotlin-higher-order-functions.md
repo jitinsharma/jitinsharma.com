@@ -3,7 +3,7 @@ title: Playing with Kotlin Higher Order Functions
 date: "2017-12-07"
 template: "post"
 draft: false
-slug: "/posts/playing-kotlin-higher-order-functions/"
+slug: "/posts/playing-with-kotlin-higher-order-functions/"
 category: "Kotlin"
 tags:
   - "Kotlin"

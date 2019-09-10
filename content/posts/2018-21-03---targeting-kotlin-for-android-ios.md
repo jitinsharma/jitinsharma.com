@@ -3,7 +3,7 @@ title: Targeting Kotlin for both Android and iOS
 date: "2018-03-21"
 template: "post"
 draft: false
-slug: "/posts/targeting-kotlin-android-ios/"
+slug: "/posts/targeting-kotlin-for-android-ios/"
 category: "Kotlin"
 tags:
   - "Kotlin"
