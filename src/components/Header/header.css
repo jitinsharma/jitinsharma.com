@@ -1,0 +1,21 @@
+.Header {
+    background: white;
+    border-bottom: 1px solid grey;
+  }
+  
+.Header__wrap {
+    margin: 0 auto;
+    max-width: 1500px;
+}
+  
+.Header__primary-link {
+    color: black;
+    text-decoration: none;
+    background-image: none;
+    padding: 0.1rem 0.2rem;
+}
+
+.photo {
+    border-radius: 50%;
+    background-clip: padding-box;
+  }

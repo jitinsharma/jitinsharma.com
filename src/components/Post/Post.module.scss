@@ -41,6 +41,9 @@
 
 @include breakpoint-md {
   .post {
+    left: 18%;
+    position: relative;
+    lost-column: 2/3;
     &__footer {
       padding: 0;
     }

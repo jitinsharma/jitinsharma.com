@@ -38,6 +38,8 @@
 
 @include breakpoint-md {
   .page {
+    left: 22%;
+    position: relative;
     lost-column: 2/3;
 
     &__inner {

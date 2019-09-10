@@ -4,6 +4,8 @@ import { graphql } from 'gatsby';
 import Layout from '../components/Layout';
 import Post from '../components/Post';
 import { useSiteMetadata } from '../hooks';
+//import Header from "../components/Header/header";
+import Sidebar from '../components/Sidebar';
 import type { MarkdownRemark } from '../types';
 
 type Props = {
@@ -13,14 +15,14 @@ type Props = {
 };
 
 const PostTemplate = ({ data }: Props) => {
-    const { title: siteTitle, subtitle: siteSubtitle, url, twitterHandle } = useSiteMetadata();
-    const { title: postTitle, description: postDescription, tags } = data.markdownRemark.frontmatter;
-    const { slug } = data.markdownRemark.fields;
+    const { title: siteTitle, subtitle: siteSubtitle, author } = useSiteMetadata();
+    const { title: postTitle, description: postDescription } = data.markdownRemark.frontmatter;
     const metaDescription = postDescription !== null ? postDescription : siteSubtitle;
-    console.log(twitterHandle)
 
     return (
         <Layout title={`${postTitle} - ${siteTitle}`} description={metaDescription}>
+            {/* <Header siteTitle="Jitin Sharma" author={author}/> */}
+            <Sidebar isIndex />
             <Post post={data.markdownRemark} />
         </Layout>
 
