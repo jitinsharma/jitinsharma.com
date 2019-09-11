@@ -16,7 +16,7 @@ As Android codebases have moved largely to kotlin, code analysis for kotlin code
 
 So you are already writing code in Kotlin and it feels great. The feeling is mutual, Kotlin is a great language and everyone loves lambdas.
 
-I'm writing about here a problem which I faced earlier where I was trying to do code analysis over koltin files to create a tool. The problem statement was to read the whole code and figure problems inside it.
+I'm writing about here a problem which I faced earlier where I was trying to do code analysis over Kotlin files to create a tool. The problem statement was to read the whole code and figure problems inside it.
 
 But first things first, **why would you want to parse files?**
 
