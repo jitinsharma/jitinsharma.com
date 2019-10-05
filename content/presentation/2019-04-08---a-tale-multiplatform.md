@@ -4,6 +4,7 @@ date: "2019-08-04"
 template: "presentation"
 draft: false
 slug: "/presentation/a-tale-multiplatform/"
+category: "Kotlin"
 description: "A presentation on evolution of code sharing and how Kotlin Multiplatform fits into it"
 ---
 

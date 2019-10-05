@@ -4,6 +4,7 @@ date: "2018-04-21"
 template: "presentation"
 draft: false
 slug: "/presentation/introducing-android-kotlin-project/"
+category: "Android/Kotlin"
 description: "A presentation on best practices for introducing Kotlin into an existing Android project in Java."
 ---
 

@@ -4,6 +4,7 @@ date: "2019-07-02"
 template: "presentation"
 draft: false
 slug: "/presentation/inject-basics/"
+category: "Android"
 description: "A presentation on Depedency Injection, dagger and koin."
 ---
 

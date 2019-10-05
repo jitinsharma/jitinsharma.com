@@ -3,7 +3,7 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import Layout from '../components/Layout';
 import Sidebar from '../components/Sidebar';
-import Feed from '../components/Feed';
+import Feed from '../components/PresentationFeed';
 import Page from '../components/Page';
 import { useSiteMetadata } from '../hooks';
 import type { PageContext, AllMarkdownRemark } from '../types';
@@ -13,12 +13,13 @@ type Props = {
   pageContext: PageContext
 };
 
-const PresentationsTemplate = ({ data, pageContext }: Props) => {
+const PresentationsTemplate = ({ data }: Props) => {
   const { title: siteTitle, subtitle: siteSubtitle } = useSiteMetadata();
 
 
   const { edges } = data.allMarkdownRemark;
   const pageTitle = siteTitle;
+  console.log(edges)
 
   return (
     <Layout title={pageTitle} description={siteSubtitle}>
@@ -40,10 +41,12 @@ export const query = graphql`
         node {
           fields {
             slug
+            categorySlug
           }
           frontmatter {
             title
             date
+            category
             description
           }
         }

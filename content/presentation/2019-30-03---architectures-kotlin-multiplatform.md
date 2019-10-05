@@ -4,6 +4,7 @@ date: "2019-03-30"
 template: "presentation"
 draft: false
 slug: "/presentation/architectures-kotlin-multiplatform/"
+category: "Kotlin"
 description: "A presentation on how to work with various MV* architectural patterns and libraries with Kotlin Multiplatform"
 ---
 

@@ -4,6 +4,7 @@ date: "2018-02-10"
 template: "presentation"
 draft: false
 slug: "/presentation/kotlin-extensions-higher-order-functions/"
+category: "Kotlin"
 description: "A presentation on leveraging Kotlin's extensions functions and higher order functions for Android"
 ---
 
