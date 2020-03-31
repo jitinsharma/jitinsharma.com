@@ -26,11 +26,10 @@ const Post = ({ post }: Props) => {
       <Link className={styles['post__home-button']} to="/">Home</Link>
 
       <div className={styles['post__content']}>
-        <Content body={html} title={title} />
+        <Content body={html} title={title} date={date} twitterHandle={twitterHandle} />
       </div>
 
       <div className={styles['post__footer']}>
-        <Meta date={date} />
         {tags && tagSlugs && <Tags tags={tags} tagSlugs={tagSlugs} />}
         <Share
             socialConfig={{
@@ -41,7 +40,7 @@ const Post = ({ post }: Props) => {
                 },
             }}
             tags={tags}/>
-            <Author />
+            {/* <Author /> */}
       </div>
 
       <div className={styles['post__comments']}>

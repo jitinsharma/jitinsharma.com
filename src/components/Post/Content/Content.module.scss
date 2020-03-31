@@ -18,6 +18,13 @@
     @include margin-bottom(0)
   }
 
+  &__author {
+    border-bottom: 1px solid $color-gray-border;
+    padding-bottom: 20px;
+    max-width: $layout-post-width;
+    margin: 0 auto 10px;
+  }
+
   &__body {
     & figure {
       @include margin-bottom(1);

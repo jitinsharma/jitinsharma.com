@@ -17,7 +17,6 @@ const PostTemplate = ({ data }: Props) => {
     const { title: postTitle, description: postDescription, tags } = data.markdownRemark.frontmatter;
     const { slug } = data.markdownRemark.fields;
     const metaDescription = postDescription !== null ? postDescription : siteSubtitle;
-    console.log(twitterHandle)
 
     return (
         <Layout title={`${postTitle} - ${siteTitle}`} description={metaDescription}>
