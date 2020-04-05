@@ -15,8 +15,8 @@ type Props = {
 };
 
 const PresentationTemplate = ({ data }: Props) => {
-    const { title: siteTitle, subtitle: siteSubtitle } = useSiteMetadata();
-    const { title: postTitle, description: postDescription } = data.markdownRemark.frontmatter;
+    const { title: siteTitle, subtitle: siteSubtitle, twitterHandle } = useSiteMetadata();
+    const { title: postTitle, description: postDescription, date } = data.markdownRemark.frontmatter;
     const metaDescription = postDescription !== null ? postDescription : siteSubtitle;
     const { html } = data.markdownRemark;
     const { title } = data.markdownRemark.frontmatter;
@@ -26,7 +26,7 @@ const PresentationTemplate = ({ data }: Props) => {
             <Sidebar isIndex />
             <Page>
                 <div>
-                    <Content body={html} title={title} />
+                    <Content body={html} title={title} date={date} twitterHandle={twitterHandle} />
                 </div>
             </Page>
         </Layout>
