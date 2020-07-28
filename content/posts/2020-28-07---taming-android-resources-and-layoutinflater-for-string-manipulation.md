@@ -2,43 +2,60 @@
 title: Taming Android Resources and LayoutInflater for string manipulation
 date: "2020-07-28"
 template: "post"
-draft: true
+draft: false
 slug: "/posts/taming-android-resources-and-layoutinflater-for-string-manipulation/"
 category: "Android"
 tags:
   - "Android"
-description: "Intercepting string resouces for dynamic updates"
+description: "Intercepting string resources for dynamic updates."
 ---
 
 Recently I was working on a problem where we wanted to make our string resources dynamic. In every app, there are strings which would often come from backend APIs and are dynamic by nature, but a lot of strings are packaged in `strings.xml`. There might be requirements to make few of these dynamic as well for eg. A/B testing etc. The major pain point here is these strings would have usages spread all over codebase and there is no default way to override `strings.xml` to make them dynamic.
 
+One solution is to move away from `strings.xml` and keep strings as constant objects or a map. But moving away from `strings.xml` has few disadvantages such as 
+- Strings cannot be used in layout preview
+- Need new logic for localisation
+- Large migration cost of removing string references in existing code base.
+
+So we want to come up with a solution where we can keep `strings.xml` as well as have dynamic updates to them.
+
 In this article I'll try to explain my experiments with string retrieval process to override default string values.
 
-## Fantastic strings and where to find them
+## String packaging and AAPT 🔡
 Let's first understand why key-value pairs in `strings.xml` cannot be dynamic by nature.
 
-Here's an example of string file with a single string
+Here's an example of string resource in `strings.xml`
 ```xml
 <string name="hello_world">Hello World!</string>
 ```
 
-We can access this string in one of these manner if we are retrieving it in xml/kotlin files
+We can access this string in one of these ways depending on whether we are retrieving it in xml or kotlin file
 ```xml
-android:text="@string/hello_world"
+android:text="@string/hello_world" //xml
 ```
 ```kotlin
-context.getString(R.string.hello_world)
+context.getString(R.string.hello_world) //kotlin
 ```
 
 `R.string.hello_world` is a constant integer which is created by `aapt` and added to `R.java` along with other constants. 
 Once an `apk` is generated strings are packaged in `resources.arsc` along with other xml data. Here's a image of our packaged string along with it's generated id.
+
 ![](media/taming-android-resources-and-layoutinflater-for-string-manipulation/resource-arsc-preview.png)
 
-The id here `0x7f100027` represents the integer value of `R.string.hello_world`
-Any layout file referencing string value using `@string` is also re-written with same id.
-![](media/taming-android-resources-and-layoutinflater-for-string-manipulation/textview-xml.png)
+The id here `0x7f100027` represents the integer value of `R.string.hello_world`.
+Any layout file referencing this string value using `@string` is also re-written with same id.
 
-Similar replacement also happens in java/kotlin bytecode when they are refrenced using `getString` method
+-> `activity_main.xml` packaged in apk
+```xml
+<TextView
+	android:layout_width="-2"
+	android:layout_height="-2"
+	android:text="@ref/0x7f100027" />
+```
+
+Similar replacement also happens in java/kotlin bytecode when they are referenced using `R.string.*` integers.
+
+-> `dex` bytecode for `MainActivity.kt`
 ```kotlin
 .line 22
 const v0, 0x7f100027
@@ -49,15 +66,17 @@ const-string v1, "getString(R.string.hello_world)"
 
 These constant ids are generated in build time and are randomised during each build. Hence it's not possible to update them dynamically.
 
-## Taking control 
+## Investigating method callstack 🕵️
 While it's not viable to update string files themselves, but we could try overriding methods which actually retrieve strings.
 In this section we explore the same.
 
-At a root level, there are always two classes involved when a string is retrieved
+At a lower level, there are always two classes involved when a string is retrieved
 - Resources - When `getString` is used java/kotlin
 - TypedArray - When `@string/` is used in xml
 
-## Resourceful Resources
+Let's investigate each of them one by one.
+
+## Resourceful Resources 📚
 Let's look at first option of retrieving string via `getString` method. The `getString` methods calls up following chain of methods
 
 ```kotlin
@@ -70,6 +89,7 @@ Let's look at first option of retrieving string via `getString` method. The `get
 
 All classes in this chain are final, except `Resources`. Let's poke it 🕵️‍♂️
 
+We start by subclassing `Resources` to create a `CustomResource` class.
 ```kotlin
 class CustomResources(
     res: Resources,
@@ -82,11 +102,11 @@ The moment you override Resources, you'll be welcomed with following deprecation
 @deprecated Resources should not be constructed by apps.
 ```
 
-Since Resources can be overriden on configuration change, overriding resources is discouraged. Ignoring this warning for now(ofcourse at your risk) 🤷‍♂️
+Since Resources can be overridden on configuration change, overriding resources is discouraged. Ignoring this warning for now(ofcourse at your risk) 🤷‍♂️
 
-Here we have also have `dynamicStringMap` which is an in-memory map which has been fetched from backend. It's good to keep this structure in memory so the string access is faster since your views might request a lot of strings in their layout cycle. 
+Here we have also have `dynamicStringMap` which is an in-memory map of strings which have been fetched from backend. It's good to keep this structure in memory so the string access is faster since your views might request a lot of strings in their layout cycle. 
 
-Overidding resources allows us to override following methods
+Overriding resources allows us to override following methods
 ```kotlin
 override fun getString(id: Int): String {
     return super.getString(id)
@@ -99,16 +119,22 @@ override fun getStringArray(id: Int): Array<String> {
 override fun getText(id: Int): CharSequence {
     return super.getText(id)
 }
+// More overrides available
 ```
 
-- `getString` and `getStringArray` are for standard strings and string-arrays which you have delcared in `strings.xml`
+- `getString` and `getStringArray` are for standard strings and string-arrays which you have declared in `strings.xml`
 - `getText` is invoked for any text with custom formatting present within xml.
 
 Each of these methods accept integer as a parameter which is equivalent to what you would pass when calling these methods with `R.string.*`
 
-Now we apply a simple redirection
+Now we apply a simple redirection in one of these methods
 
 ```kotlin
+/**
+* For a given id, this function checks if string for that key 
+* should be retrieved from dynamic string map.
+* If not present, it fallbacks to super call which will retrieve string from strings.xml
+**/
 override fun getString(id: Int): String {               // id=0x7f100027
     val name = getResourceEntryName(id)                 // name=hello_world
     return dynamicStringMap[name] ?: super.getString(id)// dynamicStringMap[name]=Hello Android!
@@ -149,23 +175,23 @@ Once we complete this setup
 
 The problem is half solved though, we still need to figure out a solution for `@string` in xml resources.
 
-## Finding view in a haystack
-String resources in xml are not resolved from `Resources`, hence our exisiting solution doesn't work for strings refrenced in layout files and in most of codebases we are still dependent on xml layouts so it's not something we can ignore.
+## Finding view in a haystack 🔍
+String values in xml layouts are not resolved from `Resources`, hence our existing solution doesn't work for strings referenced in layout files and in most of codebases we are still dependent on xml layouts so it's not something we can ignore.
 
 ```xml
 android:text="@string/hello_world"
 ```
 
 Any text referenced in xml via `@string` is resolved by corresponding View using `TypedArray`.
-`TypedArray` is final by definition and cannot be overriden.
+`TypedArray` is final by definition and cannot be subclassed.
 
-> TypedArray is an internal android class which is used to retrieve attrs from various xml resources. All Views used TypedArray to get attributes such as `text`, `layout_width` etc. TypedArray is also often recycled for optimisation and reuse.
+> `TypedArray` is an internal android class which is used to retrieve attributes from various xml resources. All Views use `TypedArray` to get attributes such as `text`, `layout_width` etc. TypedArray is also recycled for optimisation and reuse.
 
-TypedArray is important and can't be overriden. So now what?
+`TypedArray` is important and can't be overridden. So now what?
 
 While we can't override text which is reaching `TextView` from `TypedArray`, we can always override the view itself!
 
-All views are inflated using `LayoutInflater` and this class itself can be overriden to create a CustomLayoutInflater. Again, I should warn you creating Custom LayoutInflater may come with it's own set of unintended issues(but that hasn't stopped us till now 😛 ).
+All views are inflated using `LayoutInflater` and this class itself can be overridden to create a `CustomLayoutInflater`. Again, I should warn you about creating Custom LayoutInflater may come with it's own set of unintended issues(but that hasn't stopped us till now 😛 ).
 
 ```kotlin
 class CustomLayoutInflater constructor(
@@ -174,10 +200,9 @@ class CustomLayoutInflater constructor(
 ) : LayoutInflater(original, newContext)
 ```
 
-Overrding `LayoutInflater` needs overriding a lot of functions and classes such as `Factory`, `Factory2`. What we are looking specifically is for a function which actually creates view.
+Overriding `LayoutInflater` needs overriding a lot of functions and classes such as `Factory`, `Factory2`. What we are looking specifically is for a function which creates view.
 
 ```kotlin
-@Throws(ClassNotFoundException::class)
 override fun onCreateView(name: String, attrs: AttributeSet): View? {
     try {
         val view = createView(name, "android.widget.", attrs)
@@ -192,8 +217,8 @@ override fun onCreateView(name: String, attrs: AttributeSet): View? {
 }
 ```
 
-- We override `onCreateView` of `LayoutInflater` for prefix with `android.widget.` which contains `TextView` class.
-- With this we intercept all `TextView`(s) which are inflated but before they are added to layout and painted on screen.
+- We override `onCreateView` of `LayoutInflater` and intercept views with prefix `android.widget.` which contains `TextView` class.
+- With this we intercept all `TextView`(s) which are inflated but before they are actually painted on screen.
 
 Now onto overriding the TextView
 ```kotlin
@@ -205,10 +230,7 @@ private fun overrideTextView(view: TextView, attrs: AttributeSet?): TextView {
     return view
 }
 ```
-Using same old `TypedArray`, we find out the id of string resources at `android:text` location in xml. Once we get the id, we again call `resources.getText` which will route through our CustomResources implementation and then set the new string to     `TextView`.
-
-#### Side Note
-We can avoid complexities of overriding `LayoutInflater` by using [ViewPump](https://github.com/InflationX/ViewPump) which does the same job and provides an API for intercepting view inflation.
+Using same old `TypedArray`, we find out the id of string resources at `android:text` location in xml. Once we get the id, we again call `resources.getText` which will route through our `CustomResources` implementation and then set the new string to     `TextView`.
 
 Now that we have our `CustomLayoutInflater` ready, we need to attach it to `CustomContextWrapper` we had created earlier.
 ```kotlin
@@ -228,11 +250,25 @@ class CustomContextWrapper(
 }
 ```
 
+#### Side Note
+We can avoid complexities of overriding `LayoutInflater` by using [ViewPump](https://github.com/InflationX/ViewPump) which does the same job and provides an API for intercepting view inflation.
+
+## Resources Loaders 🔮
+Android 11 has introduced ability to load resources dynamically via `ResourcesLoader` and `ResourcesProvider`. This is not just restricted to string files but also allows dynamic loading of drawables and other resource files. This is an approximate way of using these classes
+```kotlin
+val provider = ResourcesProvider.loadFromDirectory("/somepath/", null)
+								// or loadFromApk()
+val loader = ResourcesLoader()
+loader.addProvider(provider)
+resources.addLoaders(loader) // Application resources
+```
+There aren't proper samples of this API provided right now and it's only available on Android 11 and above, so there is a long time for this API to be usable for majority of apps.
+
 ### Recap
 - We created an in-memory map of strings fetched from server.
-- We created CustomResources to override string retrieval and redirected it to fetch dynamic strings from map.
-- We created CustomLayoutInflator to reset text of inflated TextViews.
-- We patched all of this together in CustomContextWrapper which is attached to each activity.
+- We created `CustomResources` to override string retrieval and redirect it to fetch dynamic strings from map.
+- We created `CustomLayoutInflater` to reset text of TextViews inflated from xml with string resource.
+- We patched all of this together in `CustomContextWrapper` which is attached to each activity overriding it's context.
 
 ### FAQ
 - Should i do this?
@@ -243,9 +279,9 @@ class CustomContextWrapper(
     
     There are a lot of open source libraries like [Philogy](https://github.com/JcMinarro/Philology) and even commercial ones like [Crowdin](https://github.com/crowdin/mobile-sdk-android) which use this approach. So there are teams somewhere adopting this approach.
 
-- Is it enough to override TextView?
+- Is it enough to override `TextView`?
 
-    No. TextView might represent bulk of text displayed on your UI but there are classes like `Toolbar` which also display text without a `TextView` component. You can override these classes as well in `CustomLayoutInflater`.
+    No. `TextView` might represent bulk of text displayed on your UI but there are classes like `Toolbar` which also display text without a `TextView` component. You can override these classes as well in `CustomLayoutInflater`.
 
 - What are performance impacts?
 

@@ -33,7 +33,7 @@ const Author = ({ author, isIndex }: Props) => (
         <Link className={styles['author__title-link']} to="/">{author.name}</Link>
       </h2>
     )}
-    <p className={styles['author__subtitle']}>💻Android &nbsp;👀UX &nbsp;⌨️Kotlin<p><strong>Google Developer Expert, Android</strong></p></p>
+    <p className={styles['author__subtitle']}>💻 Android &nbsp;👀 UX &nbsp;⌨️ Kotlin<p><strong>Google Developer Expert, Android</strong></p></p>
   </div>
 );
 
