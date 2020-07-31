@@ -4,7 +4,7 @@ date: "2020-07-19"
 template: "presentation"
 draft: false
 slug: "/presentation/whats-new-in-android-android-11-meetups/"
-category: "Kotlin"
+category: "Android"
 description: "A presentation on changes introduced in Android 11"
 ---
 
