@@ -102,6 +102,6 @@ It's a good idea to poke around your `.gradle` folder routinely and delete what'
 
 I was pleasantly surprised that my `caches/modules-2/files-2.1` was only 1.5GB. This is because Gradle automatically cleans up library [cache, wrapper dists](https://docs.gradle.org/current/userguide/directory_layout.html#dir:gradle_user_home:cache_cleanup) and [build cache](https://docs.gradle.org/current/userguide/build_cache.html#sec:build_cache_configure_local) with time period of 7-30 days. Also Build cache can be cleaned by running `./gradlew cleanBuildCache`.
 
-Unfortunately I believe this does not apply to log files, since my log files were more than 30 days old and did not get deleted.
+Unfortunately I believe this does not apply to log files([open issue](https://github.com/gradle/gradle/issues/8795)), since my log files were more than 30 days old and did not get deleted.
 
 Fin.
