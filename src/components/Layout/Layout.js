@@ -8,10 +8,15 @@ import 'typeface-raleway'
 type Props = {
   children: ReactNode,
   title: string,
-  description?: string
+  description?: string,
+  bannerImage?: string
 };
 
-const Layout = ({ children, title, description }: Props) => (
+const Layout = ({ children, title, description, bannerImage }: Props) => {
+  if (bannerImage == null) {
+      bannerImage = "photo.png"
+  }
+  return(
   <div className={styles.layout}>
     <Helmet>
       <html lang="en" />
@@ -20,13 +25,13 @@ const Layout = ({ children, title, description }: Props) => (
       <meta property="og:site_name" content={title} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
-      <meta property="og:image" content="https://jitinsharma.in/photo.png" />
+      <meta property="og:image" content={"https://jitinsharma.in/" + bannerImage} />
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
     </Helmet>
     {children}
-  </div>
-);
+  </div>)
+};
 
 export default Layout;
