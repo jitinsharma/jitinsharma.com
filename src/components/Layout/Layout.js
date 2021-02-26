@@ -14,10 +14,12 @@ type Props = {
 
 const Layout = ({ children, title, description, bannerImage }: Props) => {
   var twitterImageTag = null
+  var twitterCardTag = <meta name="twitter:card" content="summary" />
   if (bannerImage == null) {
       bannerImage = "photo.png"
   } else {
     twitterImageTag = <meta name="twitter:image" content={"https://jitinsharma.in/" + bannerImage} />
+    twitterCardTag = <meta name="twitter:card" content="summary_large_image" />
   }
   return(
   <div className={styles.layout}>
@@ -25,14 +27,15 @@ const Layout = ({ children, title, description, bannerImage }: Props) => {
       <html lang="en" />
       <title>{title}</title>
       <meta name="description" content={description} />
+      <meta property="og:type" content="article" />
       <meta property="og:site_name" content={title} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={"https://jitinsharma.in/" + bannerImage} />
       <meta name="twitter:site" content="@_jitinsharma" />
-      <meta name="twitter:card" content="summary" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
+      {twitterCardTag}
       {twitterImageTag}
     </Helmet>
     {children}
