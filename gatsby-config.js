@@ -199,7 +199,7 @@ module.exports = {
         {
             resolve: `gatsby-plugin-canonical-urls`,
             options: {
-                siteUrl: `https://jitinsharma.in`,
+                siteUrl: `https://jitinsharma.com`,
             },
         },
     ]

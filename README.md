@@ -1,2 +1,2 @@
-# jitinsharma.in
+# jitinsharma.com
 Personal Website

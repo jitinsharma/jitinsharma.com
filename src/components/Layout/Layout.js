@@ -18,7 +18,7 @@ const Layout = ({ children, title, description, bannerImage }: Props) => {
   if (bannerImage == null) {
       bannerImage = "photo.png"
   } else {
-    twitterImageTag = <meta name="twitter:image" content={"https://jitinsharma.in/" + bannerImage} />
+    twitterImageTag = <meta name="twitter:image" content={"https://jitinsharma.com/" + bannerImage} />
     twitterCardTag = <meta name="twitter:card" content="summary_large_image" />
   }
   return(
@@ -31,7 +31,7 @@ const Layout = ({ children, title, description, bannerImage }: Props) => {
       <meta property="og:site_name" content={title} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
-      <meta property="og:image" content={"https://jitinsharma.in/" + bannerImage} />
+      <meta property="og:image" content={"https://jitinsharma.com/" + bannerImage} />
       <meta name="twitter:site" content="@_jitinsharma" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
