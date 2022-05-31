@@ -5,7 +5,7 @@ ghpages.publish(
   'public',
   {
     branch: 'master',
-    repo: 'https://github.com/jitinsharma/jitinsharma.github.io.git',
+    repo: 'git@github.com:jitinsharma/jitinsharma.github.io.git',
   },
   () => {
     console.log('Deploy Complete!')
