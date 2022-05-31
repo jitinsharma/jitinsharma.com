@@ -15,7 +15,7 @@ keep UI ASAP(As Shiny As Possible). Previously I worked at [Amadeus Labs](http:/
 building mobile applications for airlines all over the world.
 
 #### Community
-I'm a [Google Developer Expert](https://developers.google.com/community/experts/directory/profile/profile-jitin_sharma) 
+I'm a [Google Developer Expert](https://developers.google.com/community/experts/directory/profile/profile-jitin-sharma) 
 for Android. I occasionally write blogs and do some open source stuff on Github. I also talk a bit about Android and Kotlin at 
 meetup groups and conferences, details of which are available [here](/pages/presentations).
 
