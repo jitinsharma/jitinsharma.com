@@ -1,5 +1,5 @@
 ---
-title: Architectures with Kotlin Multiplatform - Fragments, Bangalore
+title: Architectures with Kotlin Multiplatform - Fragments, Bangalore 📹
 date: "2019-03-30"
 template: "presentation"
 draft: false

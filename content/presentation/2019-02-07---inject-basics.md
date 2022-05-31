@@ -1,5 +1,5 @@
 ---
-title: Inject Basics - Droidcon Berlin
+title: Inject Basics - Droidcon Berlin 📹
 date: "2019-07-02"
 template: "presentation"
 draft: false

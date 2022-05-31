@@ -1,5 +1,5 @@
 ---
-title: Decoding Android Runtime - DroidJam, Bangalore
+title: Decoding Android Runtime - DroidJam, Bangalore 📹
 date: "2018-07-13"
 template: "presentation"
 draft: false

@@ -1,5 +1,5 @@
 ---
-title: Meta Programming with Kotlin - Android Stream Day
+title: Meta Programming with Kotlin - Android Stream Day 📹
 date: "2020-08-08"
 template: "presentation"
 draft: false

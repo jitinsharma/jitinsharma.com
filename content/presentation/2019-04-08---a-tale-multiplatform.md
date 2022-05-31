@@ -1,5 +1,5 @@
 ---
-title: A Tale of Multiplatform - GDG Devfest Kolkata
+title: A Tale of Multiplatform - GDG Devfest Kolkata 📹
 date: "2019-08-04"
 template: "presentation"
 draft: false

@@ -1,5 +1,5 @@
 ---
-title: Relevance of code minification in a performance world
+title: Relevance of code minification in a performance world 📹
 date: "2021-10-27"
 template: "presentation"
 draft: false

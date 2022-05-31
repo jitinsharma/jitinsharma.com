@@ -1,5 +1,5 @@
 ---
-title: Climbing Mobile Ladder - India DSC Summit, Goa
+title: Climbing Mobile Ladder - India DSC Summit, Goa 📹
 date: "2019-08-24"
 template: "presentation"
 draft: false
