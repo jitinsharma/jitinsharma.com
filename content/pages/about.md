@@ -10,9 +10,8 @@ Hello 👋
 Welcome to my corner in the internet
 
 #### Work
-I currently work as an Android Engineer at [Gojek](https://www.gojek.io/) in a design focussed team to 
-keep UI ASAP(As Shiny As Possible). Previously I worked at [Amadeus Labs](http://www.amadeus.in/), 
-building mobile applications for airlines all over the world.
+I currently work as a Staff Mobile Engineer at [Groww](https://www.groww.in/), India, 
+previously worked on Design Systems at [Gojek](https://www.gojek.io/) and airline applications at [Amadeus Labs](http://www.amadeus.in/), . 
 
 #### Community
 I'm a [Google Developer Expert](https://developers.google.com/community/experts/directory/profile/profile-jitin-sharma) 
