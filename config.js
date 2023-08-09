@@ -8,7 +8,7 @@ module.exports = {
   copyright: '© All rights reserved.',
   disqusShortname: 'jitinsharma-in',
   postsPerPage: 4,
-  googleAnalyticsId: 'UA-140829739-1',
+  googleAnalyticsId: 'G-B3NPM3RCRE',
   useKatex: false,
   menu: [
     {
