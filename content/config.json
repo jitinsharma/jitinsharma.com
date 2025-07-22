@@ -1,0 +1,43 @@
+{
+  "title": "Jitin Sharma",
+  "url": "https://jitinsharma.com",
+  "description": "software-ish",
+  "copyright": "© All rights reserved.",
+  "disqusShortname": "jitinsharma-in",
+  "googleAnalyticsId": "G-B3NPM3RCRE",
+  "pathPrefix": "/",
+  "feedLimit": 4,
+  "menu": [
+    {
+      "title": "Articles",
+      "url": "/"
+    },
+    {
+      "title": "About me",
+      "url": "/pages/about"
+    },
+    {
+      "title": "Talks",
+      "url": "/pages/talks"
+    }
+  ],
+  "author": {
+    "title": "Jitin Sharma",
+    "photo": "/logo.png",
+    "description": "💻Android  👀UX  ⌨️Kotlin",
+    "contacts": [
+      {
+        "name": "github",
+        "contact": "jitinsharma"
+      },
+      {
+        "name": "linkedin",
+        "contact": "jitinsharma7"
+      },
+      {
+        "name": "x",
+        "contact": "_jitinsharma"
+      }
+    ]
+  }
+}

@@ -1,0 +1,46 @@
+@use "src/assets/styles/mixins";
+@use "src/assets/styles/variables";
+
+.socialShare {
+  max-width: variables.$layout-post-width;
+  @include mixins.padding(1, 0.5);
+  @include mixins.margin-auto();
+  border-top: 1px solid var(--color-gray-border);
+  
+  .title {
+    @include mixins.margin(0, 0, 1, 0);
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--color-primary);
+  }
+  
+  .buttons {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    
+    button {
+      outline: none !important;
+      
+      &:hover {
+        opacity: 0.8;
+        transform: translateY(-2px);
+        transition: all 0.2s ease;
+      }
+    }
+  }
+}
+
+@include mixins.breakpoint-lg {
+  .socialShare {
+    @include mixins.padding-equal(0);
+  }
+}
+
+@include mixins.breakpoint-sm {
+  .socialShare {
+    .buttons {
+      gap: 10px;
+    }
+  }
+}
