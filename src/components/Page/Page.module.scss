@@ -21,6 +21,10 @@
     font-size: variables.$typography-base-font-size;
     @include mixins.line-height(1);
     @include mixins.margin(0, 0, 1);
+
+    p a {
+      text-decoration: underline;
+    }
   }
 }
 

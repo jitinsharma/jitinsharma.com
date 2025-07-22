@@ -111,7 +111,13 @@ export default {
           "gatsby-remark-prismjs",
           "gatsby-remark-copy-linked-files",
           "gatsby-remark-smartypants",
-          "gatsby-remark-external-links",
+          {
+            resolve: "gatsby-remark-external-links",
+            options: {
+              target: "_blank",
+              rel: "nofollow noopener noreferrer"
+            }
+          },
         ],
       },
     },
@@ -177,6 +183,12 @@ export default {
         sassOptions: {
           api: "modern-compiler",
         },
+      },
+    },
+    {
+      resolve: "gatsby-plugin-disqus",
+      options: {
+        shortname: "jitinsharma-in",
       },
     },
   ],

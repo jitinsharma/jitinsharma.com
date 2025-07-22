@@ -15,6 +15,6 @@ Previously worked on Design Systems at [Gojek](https://www.gojek.io/) and airlin
 
 #### Community
 I occasionally write blogs and do some open source stuff on Github. I also talk a bit about Android and Kotlin at 
-meetup groups and conferences, details of which are available [here](/pages/presentations).
+meetup groups and conferences, details of which are available [here](/pages/talks).
 
 I'm also organiser of [BlrDroid](https://www.meetup.com/en-AU/blrdroid/) meetup group.

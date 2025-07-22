@@ -36,6 +36,7 @@ export const query = graphql`
         tags
         title
         description
+        slug
         socialImage {
           publicURL
         }

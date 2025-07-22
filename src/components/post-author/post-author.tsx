@@ -15,7 +15,6 @@ const PostAuthor = () => {
   return (
     <div className={styles.postAuthor}>
       <p className={styles.description}>
-        {author.description}
         {x ? (
           <a
             className={styles.x}
