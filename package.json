@@ -21,7 +21,8 @@
     "clean": "rimraf .cache public",
     "build": "bun run clean && gatsby build",
     "start": "bun run clean && gatsby develop",
-    "version": "bun ./internal/scripts/up-version.mjs"
+    "version": "bun ./internal/scripts/up-version.mjs",
+    "deploy": "./scripts/deploy.sh"
   },
   "dependencies": {
     "@alxshelepenok/diesel": "1.0.1365",
