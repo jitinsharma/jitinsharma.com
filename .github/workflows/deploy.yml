@@ -36,7 +36,7 @@ jobs:
 
     - name: Install modules
       if: steps.bun-cache.outputs.cache-hit != 'true'
-      run: bun install --frozen-lockfile
+      run: bun install
 
     - name: Build site
       run: bun run build
