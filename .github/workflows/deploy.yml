@@ -35,7 +35,6 @@ jobs:
           bun-${{ runner.os }}-
 
     - name: Install modules
-      if: steps.bun-cache.outputs.cache-hit != 'true'
       run: bun install
 
     - name: Build site

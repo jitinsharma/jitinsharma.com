@@ -74,4 +74,4 @@ Further reading on NTP: [https://developers.google.com/time](https://developers.
 
 If you’re ever in London, don’t miss the Greenwich time museum to learn the history of clocks and time itself.
 
-![](media/adventures-in-android-timekeeping/greenwich.jpg)
+![](./greenwich.jpg)

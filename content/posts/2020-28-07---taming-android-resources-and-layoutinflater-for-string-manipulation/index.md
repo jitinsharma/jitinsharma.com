@@ -40,7 +40,7 @@ context.getString(R.string.hello_world) //kotlin
 `R.string.hello_world` is a constant integer which is created by `aapt` and added to `R.java` along with other constants. 
 Once an `apk` is generated strings are packaged in `resources.arsc` along with other xml data. Here's a image of our packaged string along with it's generated id.
 
-![](media/taming-android-resources-and-layoutinflater-for-string-manipulation/resource-arsc-preview.png)
+![](./resource-arsc-preview.png)
 
 The id here `0x7f100027` represents the integer value of `R.string.hello_world`.
 Any layout file referencing this string value using `@string` is also re-written with same id.

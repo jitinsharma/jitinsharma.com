@@ -39,20 +39,11 @@ But how did this happen.
 
 Now this folder contains hundreds of log files for daemons spawned by different versions of gradle
 
-![](media/take-care-of-your-gradle-home-directory/daemon-directory.png)
+![](./daemon-directory.png)
 
 Most of the log files in these folder are 1-2 MB or less. But then I found some log files whose size was ~1GB and even ~5GB!
 
-<div class="image-container">
-    <div style="float:left;margin-right:5px;">
-        <img src="/media/take-care-of-your-gradle-home-directory/daemon-size-1.png"/>
-    </div>
-    <div style="float:left;margin-right:5px;">
-        <img class="middle-img" src="/media/take-care-of-your-gradle-home-directory/daemon-size-2.png"/>
-    </div>
-</div>
-<br>
-<br>
+![](./daemon-size-1.png) ![](./daemon-size-2.png)
 
 Very suspicious!
 ## Travelling back in time ~ 1 month

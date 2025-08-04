@@ -12,7 +12,7 @@ description: "
 As Android codebases have moved largely to kotlin, code analysis for kotlin code presents itself as a unique problem with a utterly simple solution."
 ---
 
-<img src="/media/parsing-kotlin-using-code-kotlin/logo.svg" width="75" height="75"/>
+<img src="./logo.svg" width="75" height="75"/>
 
 So you are already writing code in Kotlin and it feels great. The feeling is mutual, Kotlin is a great language and everyone loves lambdas.
 
@@ -126,7 +126,7 @@ fun Bitmap.convertBitmapToBytes(): ByteArray {
 
 Generated doc: **ImageExtensions.md**
 
-![ImageExtensions.md](/media/parsing-kotlin-files-kotlin/image-extensions-doc.png)
+![ImageExtensions.md](./image-extensions-doc.png)
 
 ## Final Words
 

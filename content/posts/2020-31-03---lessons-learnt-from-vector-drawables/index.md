@@ -11,7 +11,7 @@ tags:
 description: "Working safely with Vector Drawables on different API levels."
 ---
 
-![](media/lessons-learnt-from-vector-drawables/vector-header.png)
+![](./vector-header.png)
 
 Dialing back to days of Android 5.0 release(s) one of the things which got a lot of people excited was Android got support for SVGs in form of vector Drawables. No longer you were required to draw custom shapes or have icon png(s) based on density, just import SVGs using Android Studio and let the support library draw them for you!
 
@@ -22,7 +22,7 @@ By default, if you don't enable support library use all vector drawables are con
 
 Here's how a vector xml file in transformed into multiple pngs during build cycle
 
-![](media/lessons-learnt-from-vector-drawables/vector-png.png)
+![](./vector-png.png)
 
 This rasterization into pngs modifies after build size of one vector(in this case) from 2kb to 7kb which is more than **3x** size increase. 
 
@@ -55,7 +55,7 @@ A very straightforward way of using vectors is `ImageView` which can be used for
 
 Since vectors are not supported natively, they always should be used with `app` namespace. Android Studio does a good job to let you know the same for `ImageView`
 
-![](media/lessons-learnt-from-vector-drawables/vector-imageview.png)
+![](./vector-imageview.png)
 
 But let's look at some other scenarios
 
@@ -161,7 +161,7 @@ This works fine above **API 23** and even below **API 21** but fails in between 
 
 Let's look at what `ContextCompat` does
 
-![](media/lessons-learnt-from-vector-drawables/contextcompat-getdrawable.png)
+![](./contextcompat-getdrawable.png)
 
 Above **API 21**, it uses `context` to inflate drawables, but there is a catch. Support for `gradient` tag in vectors was introduced in **API 24** hence resolving drawables via `context` will fail below **API 24** since framework doesn't know what `gradient` tag is!
 
@@ -169,7 +169,7 @@ Below **API 21**, it uses `context.getResources` and IIRC, inflation of drawable
 
 This error can be avoided by using `AppCompatResources` instead of `ContextCompat` which works well on all API levels because it does a lot of checks! 😅 Look for yourself
 
-![](media/lessons-learnt-from-vector-drawables/appcompatresources-getdrawable.png)
+![](./appcompatresources-getdrawable.png)
 
 Preferring `AppCompatResources` becomes fairly important if you have a utility class or an extension function to load drawables app wide, since that class won't be aware of what kind of drawables it's receiveing.
 
@@ -207,9 +207,9 @@ Android Studio's lint checks may not be enough if you're using vectors heavily i
 
 Here are two examples which will cause crash at runtime where we are using vector with `android` namespace on API levels below 21.
 
-![](media/lessons-learnt-from-vector-drawables/linear-layout-vector.png)
+![](./linear-layout-vector.png)
 
-![](media/lessons-learnt-from-vector-drawables/textview-vector.png)
+![](./textview-vector.png)
 
 We can write a custom lint rule which will then give out errors in XML whenever vectors are used without `app` namespace.
 
@@ -284,9 +284,9 @@ class VectorUsageDetector : ResourceXmlDetector() {
 
 Here's how it looks like with lint rule in place.
 
-![](media/lessons-learnt-from-vector-drawables/linear-layout-lint-error.png)
+![](./linear-layout-lint-error.png)
 
-![](media/lessons-learnt-from-vector-drawables/textview-lint-error.png)
+![](./textview-lint-error.png)
 
 Having instrumentation test case which run on devices with API level less than 21 can also help to catch these errors early.
 

@@ -169,7 +169,7 @@ If we take a look back at traditional Android UI, the framework provided a lot o
 
 Compose builds components on the same concept where components are separated by a design layer defined by `foundation` and `material` packages.
 
-![](media/composing-a-design-system/ui-packages.png)
+![](./ui-packages.png)
 
 UI components within the Compose framework are divided into classes which make no assumptions around Theming such as `BasicText` and classes such as `Text` which expose `LocalTextStyle` as a `CompositionLocal` allowing them to be themed. This can be compared to color attributes such as `colorControlActivated` which we would use in traditional framework components such as `Switch` to theme it.
 
