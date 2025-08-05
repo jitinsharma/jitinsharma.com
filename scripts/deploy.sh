@@ -37,6 +37,21 @@ if [ ! -d "$DEPLOY_REPO" ]; then
     cd jitinsharma.com
 fi
 
+# Clear deployment repo except CNAME
+echo "🧹 Clearing deployment repository (preserving CNAME)..."
+cd $DEPLOY_REPO
+# Backup CNAME if it exists
+if [ -f "CNAME" ]; then
+    cp CNAME /tmp/CNAME.backup
+fi
+# Remove all files except .git directory
+find . -not -path './.git*' -delete 2>/dev/null || true
+# Restore CNAME if it existed
+if [ -f "/tmp/CNAME.backup" ]; then
+    mv /tmp/CNAME.backup CNAME
+fi
+cd - > /dev/null
+
 # Copy files to deployment repo
 echo "📁 Copying files to deployment repository..."
 cp -r public/* $DEPLOY_REPO/

@@ -2,7 +2,7 @@
 title: Finding Network in a haystack
 date: "2025-08-05"
 template: "post"
-draft: true
+draft: false
 slug: "/posts/finding-network-in-a-haystack/"
 category: "Android"
 tags:
@@ -14,7 +14,7 @@ socialImage: "./image.png"
 
 ![Finding Network in a haystack](./image.png)
 
-I recently learned about spread spectrum technology - a communication technique developed decades ago that works by hopping signals across frequencies to improve reliability. What started as a way to make military communications jam-resistant eventually led to CDMA and the cellular networks we rely on today. The entire journey of how a communication signal travels is quite fascinating, and equally complex and deep when performing a simple thing such as a network call on mobile.
+I recently learned about spread spectrum technology (credit [acquired.fm](https://www.acquired.fm/)) - a communication technique developed decades ago that works by hopping signals across frequencies to improve reliability. What started as a way to make military communications jam-resistant eventually led to CDMA and the cellular networks we rely on today. The entire journey of how a communication signal travels is quite fascinating, and equally complex and deep when performing a simple step such as a network call on mobile.
 
 A simple HTTP request might seem straightforward, but under the hood, it's a complex dance between your device, cellular towers, ISPs, and data centers. Each step in this chain can introduce latency, failures, or performance bottlenecks. Through real-world experimentation and production deployments, I've discovered several low-level optimizations that can dramatically improve network reliability and performance.
 
@@ -122,7 +122,7 @@ While clients attempting to connect to IPv6 have been informed by network to use
 - Corporate firewall policies
 - Home router misconfigurations
 
-We later figured out that **~5%** users can't connect to IPv6, even when DNS resolves it for them and end up connecting to IPv4 addresses.
+We later figured out that **~3%** users can't connect to IPv6, even when DNS resolves it for them and end up connecting to IPv4 addresses. It is also more likely to happen on a wifi connection than a cellular one.
 
 ## Making attempts faster
 
@@ -183,6 +183,11 @@ HTTP/3 uses [QUIC](https://www.chromium.org/quic/) protocol, which runs over UDP
 - **Reduced Latency**: Built-in encryption, no separate TLS handshake
 
 Unfortunately, `okhttp` doesn't support HTTP3 natively, but we can use Google's [Cronet](https://developer.android.com/develop/connectivity/cronet) library, which can also plug into `okhttp` stack but with limited [features](https://github.com/google/cronet-transport-for-okhttp).
+
+**Fun side note**
+
+Google introduced [SPDY](https://www.chromium.org/spdy/spdy-whitepaper/) protocol to overcome HTTP1 limitations, which eventually was used in HTTP2. Same is repeated with QUIC, which was introduced by Google and eventually made it's way to HTTP3.
+
 
 ## Measurement
 If using `okhttp` , you can attach an `EventListener` to the `Builder`, which can then be used to measure different stages of http calls.
